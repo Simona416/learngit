@@ -1,6 +1,5 @@
 <template>
   <div class="vital-chart-wx">
-    <div>wx-echarts</div>
     <div class="my-charts">
       <ec-canvas  class="canvas" id="mychart" canvas-id="mychart-bar" :ec="ec"></ec-canvas>
     </div>
@@ -39,10 +38,10 @@
 
 <style>
   .my-charts{
-    height: 500px;
+    height: 300px;
   }
   ec-canvas {
-    width: 300px;
-    height: 300px;
+    width: 80px;
+    height: 80px;
   }
 </style>
