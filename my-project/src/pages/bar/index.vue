@@ -95,46 +95,63 @@
         }, 3000)
       },
       getOptions: function (i) {
-        let option = {
-          tooltip: {
-            trigger: 'item',
-            formatter: "{b}\n {c} ({d}%)"
-          },
-          series: [
-            {
-              name:'',
-              type:'pie',
-              radius: ['30%', '50%'],
-              avoidLabelOverlap: false,
-              label: {
-                normal: {
-                  show: true,
-                  position: 'outside',
-                  formatter: "{b} \n {c} ({d}%)"
-                },
-                emphasis: {
-                  show: true,
-                  textStyle: {
-                    fontSize: '16',
-                    fontWeight: 'bold'
+        let option
+        if (i===0) {
+          option = {
+            tooltip: {
+              trigger: 'item',
+              formatter: "{b}\n {c} ({d}%)"
+            },
+            series: [
+              {
+                name:'',
+                type:'pie',
+                radius: ['30%', '50%'],
+                avoidLabelOverlap: false,
+                label: {
+                  normal: {
+                    show: true,
+                    position: 'outside',
+                    formatter: "{b} \n {c} ({d}%)"
+                  },
+                  emphasis: {
+                    show: true,
+                    textStyle: {
+                      fontSize: '16',
+                      fontWeight: 'bold'
+                    }
                   }
-                }
-              },
-              labelLine: {
-                normal: {
-                  show: true
-                }
-              },
-              data:[
-                {name: '通讯物流', value: 29.85},
-                {name: '交通出行', value: 729.83},
-                {name: '健康', value: 26},
-                {name: '饮食', value: 165.89},
-                {name: '生活日用', value: 1281.70},
-                {name: '其他消费', value: 216.88}
-              ]
-            }
-          ]
+                },
+                labelLine: {
+                  normal: {
+                    show: true
+                  }
+                },
+                data:[
+                  {name: '通讯物流', value: 29.85},
+                  {name: '交通出行', value: 729.83},
+                  {name: '健康', value: 26},
+                  {name: '饮食', value: 165.89},
+                  {name: '生活日用', value: 1281.70},
+                  {name: '其他消费', value: 216.88}
+                ]
+              }
+            ]
+          }
+        } else if (i === 1) {
+          option = {
+            xAxis: {
+              type: 'category',
+              data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            },
+            yAxis: {
+              type: 'value'
+            },
+            series: [{
+              data: [820, 932, 901, 934, 1290, 1330, 1320],
+              type: 'line'
+            }]
+          }
         }
         return option
       },
@@ -180,6 +197,7 @@
       changeType () {
         if (this.selected) {
           this.showAnim = 'to-right'
+
         } else {
           this.showAnim = 'to-left'
         }
@@ -292,13 +310,19 @@
   }
   @keyframes anim-right {
     0% { left: 1px; }
-    100% { left: 50%; }
+    10%{ left: 10% }
+    30%{ left: 40% }
+    95%{ left: 52% }
+    100% { left: 50%;}
   }
   @keyframes anim-left {
-    0% { left: 1px; }
-    100% { left: 50%; }
+    0% { left: 50%; }
+    10%{ left: 40% }
+    30%{ left: 10% }
+    95%{ left: -2% }
+    100% { left: 1px; }
   }
-  .tp .to-right {
+  .tp.to-right {
     /*执行动画*/
     -webkit-animation: anim-right 0.5s 1;
     animation: anim-right 0.5s 1;
@@ -306,7 +330,7 @@
     -webkit-animation-fill-mode:forwards;
     animation-fill-mode:forwards;
   }
-  .tp .to-left {
+  .tp.to-left {
     /*执行动画*/
     -webkit-animation: anim-left 0.5s 1;
     animation: anim-left 0.5s 1;
